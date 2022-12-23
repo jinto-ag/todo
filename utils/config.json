@@ -1,0 +1,73 @@
+{
+  "models": [
+    {
+      "app_name": "user",
+      "name": "User",
+      "parents": [],
+      "fields": [
+        {
+          "name": "username",
+          "type": "CharField",
+          "options": {
+            "max_length": 24,
+            "blank": false,
+            "null": false,
+            "unique": true
+          }
+        },
+        {
+          "name": "created_on",
+          "type": "DateTimeField",
+          "options": {
+            "auto_now": true
+          }
+        },
+        {
+          "name": "updated_on",
+          "type": "DateTimeField",
+          "options": {
+            "auto_now_add": true
+          }
+        }
+      ]
+    }
+  ],
+  "model_forms": [
+    {
+      "name": "UserCreationForm",
+      "parents": [],
+      "fields": ["username", "email"]
+    },
+    { "name": "UserCreationForm", "parents": ["forms.ModelForm"] }
+  ],
+  "forms": [
+    {
+      "name": "FeedbackForm",
+      "parents": [],
+      "fields": [
+        {
+          "name": "name",
+          "type": "CharField",
+          "options": {
+            "min_length": 5
+          }
+        }
+      ]
+    }
+  ],
+  "views": [
+    {
+      "name": "UserCreateView",
+      "app_name": "user",
+      "parents": ["CreateView"],
+      "configs": [
+        {
+          "template_name": "user/create.html",
+          "model": "user.User",
+          "form_class": "django.contrib.auth.forms.UserCreationForm",
+          "success_url": "user:dashboard"
+        }
+      ]
+    }
+  ]
+}
